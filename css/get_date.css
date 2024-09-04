@@ -1,0 +1,13 @@
+body {
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 2em;
+    font-size: 2.5em;
+}
+
+#dateTime {
+    margin-top: 3em;
+    font-size: 2em;
+}
