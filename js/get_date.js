@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //Timezone Identifiers
     const timeZoneMap = {
-        'New York': 'America/New_York',
+        'New_York': 'America/New_York',
+        'Los_Angeles': 'America/Los_Angeles',
         'London': 'Europe/London',
         'Auckland': 'Pacific/Auckland',
         'Tokyo': 'Asia/Tokyo'
