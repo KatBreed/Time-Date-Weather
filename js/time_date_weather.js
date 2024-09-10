@@ -2,6 +2,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     const select = document.getElementById('location');
     const dateTime = document.getElementById('dateTime');
+    const weatherDescription = document.getElementById('weatherDescription');
+    const temperature = document.getElementById('temperature');
 
     //Timezone Identifiers
     const timeZoneMap = {
@@ -24,9 +26,31 @@ document.addEventListener('DOMContentLoaded', function() {
         dateTime.textContent = `${formattedDate}`;
     }
 
-    // Trigger change event on page load to show initial time
-    select.addEventListener('change', updateTime);
+    //Fetch Weather Data
+    async function fetchWeather(location) {
+        const apiKey = 'feab3ba4706440918f315034241009';
+        const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}`;
+
+            try {
+                const response = await
+        fetch(url);
+                const data = await
+        response.json();
+                weatherDescription.textContent = data.current.condition.text;
+                temperature.textContent = `${data.current.temp_c}°C`;
+            } catch (error) {
+                console.error('Error fetching weather data:', error);
+        }
+    }
+
+    //Trigger change event on page load to show initial time and weather
+    select.addEventListener('change', () =>
+{
+        updateTime();
+        fetchWeather(select.value);
+    });
     updateTime();
+    fetchWeather(select.value);
 
     //Update time every second
     setInterval(updateTime, 1000);
